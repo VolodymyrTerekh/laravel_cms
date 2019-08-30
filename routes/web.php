@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+Route::group(['prefix' => 'admin'], function()
+{
+    Route::get('import_products','ProductsImportController@index')->name('importproducts.index');
+    Route::post('import_products','ProductsImportController@import')->name('importproducts.import');
 });
